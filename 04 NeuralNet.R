@@ -12,11 +12,11 @@ abalone_scaled <- data.frame(as.data.frame(Gender), abalone_scaled)
 
 ########## MODIFIED FORWARD SELECTION W/ REGRESSION #############
 abalone_mfs <- abalone_scaled[, c("Diameter",
-                                     "Height",
-                                     "Whole.weight",
-                                     "Shucked.weight",
-                                     "Shell.weight",
-                                     "binaryClass")]
+                                  "Height",
+                                  "Whole.weight",
+                                  "Shucked.weight",
+                                  "Shell.weight",
+                                  "binaryClass")]
 
 set.seed(100)
 sample_index <- sample(1:nrow(abalone_scaled), 3340)
@@ -27,12 +27,12 @@ testing_mfs <- abalone_mfs[-sample_index,]; row.names(testing_mfs) <- NULL
 
 columns_orig <- names(training_orig)
 formula_orig <- as.formula(paste("binaryClass ~", 
-                paste(columns_orig[!columns_orig %in% "binaryClass"], 
-                collapse = " + ")))
+                                 paste(columns_orig[!columns_orig %in% "binaryClass"], 
+                                       collapse = " + ")))
 columns_mfs <- names(training_mfs)
 formula_mfs <- as.formula(paste("binaryClass ~", 
-               paste(columns_mfs[!columns_mfs %in% "binaryClass"], 
-               collapse = " + ")))
+                                paste(columns_mfs[!columns_mfs %in% "binaryClass"], 
+                                      collapse = " + ")))
 
 ############### LEARNING CURVE ANALYSIS ################
 
@@ -152,5 +152,3 @@ print(lc_testing_results)
 
 plot(sample_sizes, lc_testing_results, xlab="Training Set Sample Size", ylab="Testing Set Prediction Error")
 lines(sample_sizes, lc_testing_results)
-
-
